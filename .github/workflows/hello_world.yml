@@ -27,10 +27,10 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-             cd /home/runner/work/java-gradle/java-gradle/app
-             pwd
-             chmod +x /home/runner/work/java-gradle/java-gradle/gradlew
-             /home/runner/work/java-gradle/java-gradle/gradlew build
+             cd /home/runner/work/java-gradle/java-gradle/.github/workflows
+             ./gradle init
+             chmod +x gradlew
+             ./gradlew build
           
           #echo Add other actions to build,
           #echo test, and deploy your project.
