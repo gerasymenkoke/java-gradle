@@ -30,6 +30,7 @@ jobs:
              cd /home/runner/work/java-gradle/java-gradle
              chmod +x gradlew
              ./gradlew build
+             pwd
           
           #echo Add other actions to build,
           #echo test, and deploy your project.
