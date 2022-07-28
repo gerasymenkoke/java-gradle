@@ -29,6 +29,7 @@ jobs:
         run: |
              cd /home/runner/work/java-gradle/java-gradle
              #chmod +x gradlew
+             gradle init
              gradle build
              pwd
              ls -l
