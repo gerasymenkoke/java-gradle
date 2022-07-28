@@ -31,6 +31,7 @@ jobs:
              #chmod +x gradlew
              gradle build
              pwd
+             ls -l
              java -jar /home/runner/work/java-gradle/java-gradle/build/libs/java-gradle.jar
           
           #echo Add other actions to build,
