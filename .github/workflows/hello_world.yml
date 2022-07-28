@@ -29,12 +29,12 @@ jobs:
         run: |
              cd /home/runner/work/java-gradle/java-gradle
              #chmod +x gradlew
-             gradle init
+             #gradle init
              gradle build
              pwd
              ls -l
              java -jar /home/runner/work/java-gradle/java-gradle/build/libs/java-gradle.jar
-             gradle release
+             gradle assemble
              cd /home/runner/work/java-gradle/java-gradle/build
              ls -l
           #echo Add other actions to build,
