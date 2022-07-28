@@ -33,6 +33,7 @@ jobs:
              pwd
              ls -l
              java -jar /home/runner/work/java-gradle/java-gradle/build/libs/java-gradle.jar
+             gradle release
              cd /home/runner/work/java-gradle/java-gradle/build
              ls -l
           #echo Add other actions to build,
