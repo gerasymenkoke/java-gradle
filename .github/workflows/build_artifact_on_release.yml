@@ -17,7 +17,7 @@ jobs:
         run: |
          chmod +x gradlew
           ./gradlew  test
-          ./gradlew assembleRelease
+         # ./gradlew assembleRelease
           ./gradlew bundleRelease
       - name: Upload APK
         uses: actions/upload-artifact@v2
