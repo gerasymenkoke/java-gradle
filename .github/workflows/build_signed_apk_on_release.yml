@@ -2,8 +2,7 @@ name: Test_and_build_signed_artifacts_on_release
 
 on:
   push:
-    branches:
-      - 'main'
+    branches: [ main ]
 
 env:
   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -22,7 +21,7 @@ jobs:
       - name: Checkout private repo with keystore
         uses: actions/checkout@v2
         with:
-          repository: Konstantin-Kuznetsov/sample-keystore
+          repository: gerasymenkoke/java-gradle/sample-keystore
           token: ${{ secrets.KEYSTORE_ACCESS_TOKEN }}
           path: keystore
 
