@@ -4,8 +4,8 @@ on:
 # When it will be triggered
 # And in which branch
   push:
-    branches:
-      - main
+    branches: [main]
+    
 # Where will they run
 jobs:
   build:
