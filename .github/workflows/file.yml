@@ -3,8 +3,10 @@ name: Build
 on:
 # When it will be triggered
 # And in which branch
+  pull_request:
   push:
-    branches: [main]
+    branches:
+      - main
     
 # Where will they run
 jobs:
@@ -19,18 +21,18 @@ jobs:
       - name: Set up our JDK environment
         uses: actions/setup-java@v1.4.3
         with:
-        java-version: 1.8
+          java-version: 1.8
     
     ## Build all our Build Types at once ##
       - name: Build all artifacts
         id: buildAllApks
         uses: eskatos/gradle-command-action@v1.3.3
         with:
-        gradle-version: current
-        wrapper-cache-enabled: true
-        dependencies-cache-enabled: true
-        configuration-cache-enabled: true
-        arguments: assembleRelease
+         gradle-version: current
+         wrapper-cache-enabled: true
+         dependencies-cache-enabled: true
+         configuration-cache-enabled: true
+         arguments: assembleRelease
       - name: Run Kotlin Linter
         run: ./gradlew ktlintStagingDebugCheck
 
@@ -43,11 +45,11 @@ jobs:
         id: signArtifact
         uses: r0adkll/sign-android-release@v1.0.1
         with:
-        releaseDirectory: app/build/outputs/apk/ourbuildtype/release
-        alias: ${{ secrets.KEYALIAS }}
-        signingKeyBase64: ${{ secrets.KEYSTORE }}
-        keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-        keyPassword: ${{ secrets.KEY_PASSWORD }}
+         releaseDirectory: app/build/outputs/apk/ourbuildtype/release
+         alias: ${{ secrets.KEYALIAS }}
+         signingKeyBase64: ${{ secrets.KEYSTORE }}
+         keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+         keyPassword: ${{ secrets.KEY_PASSWORD }}
 
       - name: Upload our APK
         uses: actions/upload-artifact@v2.2.0
