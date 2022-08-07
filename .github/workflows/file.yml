@@ -1,6 +1,6 @@
 # Workflow name
 name: Build
-on:
+  on:
 # When it will be triggered
 # And in which branch
   pull_request:
@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     
     ## Checkout our repository ###
-- name: Checkout
-  uses: actions/checkout@v2.3.3
+    name: Checkout
+    uses: actions/checkout@v2.3.3
 
 - name: Set up our JDK environment
   uses: actions/setup-java@v1.4.3
   with:
-    java-version: 1.8
+      java-version: 1.8
     
     ## Build all our Build Types at once ##
 - name: Build all artifacts
@@ -55,11 +55,7 @@ jobs:
   with:
     name: Release artifact
     path: app/build/outputs/apk/ourbuildtype/release/app-artifact-*.apk    
-    android.applicationVariants.all { variant ->
-    variant.outputs.all {
-        outputFileName = "app-${variant.productFlavors[0].name}-${variant.buildType.name}-${variant.versionName}.apk"
-    }
-}
+    
 
 - name: Create Release
   id: create_release
@@ -72,7 +68,7 @@ jobs:
     draft: false
     prerelease: false
     
-    - name: Save name of our Artifact
+- name: Save name of our Artifact
   id: set-result-artifact
   run: |
     ARTIFACT_PATHNAME_APK=$(ls app/build/outputs/apk/ourbuildtype/release/*.apk | head -n 1)
@@ -81,7 +77,7 @@ jobs:
     echo "ARTIFACT_PATHNAME_APK=${ARTIFACT_PATHNAME_APK}" >> $GITHUB_ENV
     echo "ARTIFACT_NAME_APK=${ARTIFACT_NAME_APK}" >> $GITHUB_ENV
     
-    - name: Upload our Artifact Assets
+- name: Upload our Artifact Assets
   id: upload-release-asset
   uses: actions/upload-release-asset@v1
   env:
@@ -92,13 +88,14 @@ jobs:
     asset_name: ${{ env.ARTIFACT_NAME_APK }}
     asset_content_type: application/zip
     
-    - name: Notify on Slack
+- name: Notify on Slack
   uses: act10ns/slack@v1.0.9
   with:
     status: ${{ job.status }}
     steps: ${{ toJson(steps) }}
     if: always()
-    
+   
+
     
     
     
