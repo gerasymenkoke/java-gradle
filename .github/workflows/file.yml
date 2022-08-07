@@ -22,7 +22,11 @@ jobs:
         uses: actions/setup-java@v1.4.3
         with:
           java-version: 1.8
-    
+        
+      - name: init
+        run: gradle init 
+        
+        
     ## Build all our Build Types at once ##
       - name: Build all artifacts
         id: buildAllApks
@@ -34,9 +38,7 @@ jobs:
          configuration-cache-enabled: true
          arguments: assembleRelease
       - name: Run Kotlin Linter
-        run: |
-              gradle init
-              ./gradlew ktlintStagingDebugCheck
+        run: ./gradlew ktlintStagingDebugCheck
 
       - name: Run Unit Tests
         run: ./gradlew testStagingDebugUnitTest
